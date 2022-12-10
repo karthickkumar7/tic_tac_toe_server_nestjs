@@ -1,7 +1,29 @@
 export interface AddUser {
-  id: number;
   username: string;
   roomId: string;
+}
+
+export interface UpdateSocketEvent {
+  roomId: string;
+  cellId: string;
+}
+
+export interface MessgageData {
+  username: string;
+  msg: string;
+  roomId: string;
+  userId: number;
+}
+
+export interface WinData {
+  roomId: string;
+  userId: number;
+}
+
+export interface Credentials {
+  username: string;
+  roomId: string;
+  socketId: string;
 }
 
 export interface User {
@@ -9,22 +31,24 @@ export interface User {
   socketId: string;
   id: number;
   roomId: string;
-}
-
-export interface Member {
-  username: string;
-  socketId: string;
-  id: number;
+  stats: {
+    wins: number;
+    loss: number;
+    winPercent: number;
+  };
 }
 
 export interface Message {
   message: string;
-  author: string;
+  id: string;
+  userId: number;
   username: string;
 }
 
 export interface Room {
-  roomname: string;
+  roomId: string;
   messages: Message[];
-  members: Member[];
+  members: User[];
+  full: boolean;
+  noOfGames: number;
 }
