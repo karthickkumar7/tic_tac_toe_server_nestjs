@@ -58,7 +58,9 @@ export class UserService {
     });
 
     const room = this.rooms.find((rm) => rm.roomId === roomId);
-    room.members = room.members.filter((usr) => usr.socketId !== socketId);
+    if (room) {
+      room.members = room.members.filter((usr) => usr.socketId !== socketId);
+    }
 
     if (room && !room.members.length) {
       this.rooms = this.rooms.filter((rm) => rm.roomId !== roomId);
